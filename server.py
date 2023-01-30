@@ -4,7 +4,8 @@ class SimpleEcho(WebSocket):
 
     def handleMessage(self):
         # echo message back to client
-        self.sendMessage(self.data)
+        print("receive data: " + self.data)
+        self.sendMessage(self.data + " From Server")
 
     def handleConnected(self):
         print(self.address, 'connected')
@@ -12,5 +13,5 @@ class SimpleEcho(WebSocket):
     def handleClose(self):
         print(self.address, 'closed')
 
-server = SimpleWebSocketServer('', 8888, SimpleEcho)
+server = SimpleWebSocketServer('', 8000, SimpleEcho)
 server.serveforever()
